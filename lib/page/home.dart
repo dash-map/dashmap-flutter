@@ -1,5 +1,8 @@
+import 'package:dash_map/page/login.dart';
 import 'package:dash_map/theme/color.dart';
+import 'package:dash_map/widget/progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,7 +36,7 @@ class HomePage extends StatelessWidget {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: const [
-                  RoadMapItem(roadMapType: 'Frontend Roadmap', percent: '70'),
+                  RoadMapItem(roadMapType: 'Frontend Roadmap', percent: '10'),
                   SizedBox(width: 30),
                   RoadMapItem(roadMapType: 'Backend Roadmap', percent: '70'),
                   SizedBox(width: 30),
@@ -51,24 +54,79 @@ class HomePage extends StatelessWidget {
               style: Theme.of(context).textTheme.headline1,
             ),
             const SizedBox(height: 10),
-            recommendVideoItem('asd'),
+            recommendVideoItem(),
             SizedBox(height: 20),
-            recommendVideoItem('asd'),
+            recommendVideoItem(),
             SizedBox(height: 20),
-            recommendVideoItem('asd'),
+            recommendVideoItem(),
             SizedBox(height: 20),
-            recommendVideoItem('asd'),
+            recommendVideoItem(),
             SizedBox(height: 20),
           ],
         ),
       ),
+      floatingActionButton: speedDialButton(context),
     );
   }
 
-  Widget recommendVideoItem(String url) {
+  Widget speedDialButton(BuildContext context) {
+    return SpeedDial(
+      animatedIcon: AnimatedIcons.menu_close,
+      animatedIconTheme: const IconThemeData(
+        size: 22,
+        color: ColorData.white,
+      ),
+      backgroundColor: ColorData.orange2,
+      visible: true,
+      curve: Curves.bounceIn,
+      spacing: 10.0,
+      spaceBetweenChildren: 10.0,
+      children: [
+        SpeedDialChild(
+          child: const Icon(
+            Icons.person,
+            color: ColorData.white,
+          ),
+          backgroundColor: ColorData.orange2,
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (BuildContext context) {
+            //     return SearchPage();
+            //   }),
+            // );
+          },
+          label: '마이페이지',
+          labelBackgroundColor: ColorData.orange2,
+          labelStyle: const TextStyle(color: ColorData.white),
+        ),
+        SpeedDialChild(
+          child: const Icon(
+            Icons.exit_to_app,
+            color: ColorData.white,
+          ),
+          backgroundColor: ColorData.orange2,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) {
+                return LoginPage();
+              }),
+            );
+          },
+          label: '로그아웃',
+          labelBackgroundColor: ColorData.orange2,
+          labelStyle: const TextStyle(color: ColorData.white),
+        )
+        // labelStyle: TextStyle(color: ColorData.sky))
+      ],
+    );
+  }
+
+  Widget recommendVideoItem({String? url, String? imgUrl}) {
     return InkWell(
       child: Container(
-        width: 300,
+        // width: 300,
         height: 150,
         decoration: BoxDecoration(
             border: Border.all(color: ColorData.black),
@@ -108,25 +166,8 @@ class RoadMapItem extends StatelessWidget {
                   ?.copyWith(color: ColorData.red),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Stack(
-                children: [
-                  Container(
-                    height: 25,
-                    decoration: BoxDecoration(
-                        color: ColorData.sky,
-                        borderRadius: BorderRadius.circular(15.0)),
-                  ),
-                  Container(
-                    width: 3 * double.parse(percent),
-                    height: 25,
-                    decoration: BoxDecoration(
-                        color: ColorData.red,
-                        borderRadius: BorderRadius.circular(15.0)),
-                  ),
-                ],
-              ),
-            )
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: progressBar(percent))
           ],
         ),
       ),
