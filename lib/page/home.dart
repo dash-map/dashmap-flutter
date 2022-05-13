@@ -1,8 +1,8 @@
-import 'package:dash_map/page/login.dart';
 import 'package:dash_map/theme/color.dart';
+import 'package:dash_map/widget/app_bar.dart';
 import 'package:dash_map/widget/progress_bar.dart';
+import 'package:dash_map/widget/speed_dial_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,17 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/logo.png',
-          fit: BoxFit.contain,
-          width: 40.0,
-          height: 40.0,
-        ),
-        backgroundColor: ColorData.white,
-        centerTitle: true,
-        elevation: 3.0,
-      ),
+      appBar: myAppBar(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 0.0),
         child: ListView(
@@ -69,64 +59,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget speedDialButton(BuildContext context) {
-    return SpeedDial(
-      animatedIcon: AnimatedIcons.menu_close,
-      animatedIconTheme: const IconThemeData(
-        size: 22,
-        color: ColorData.white,
-      ),
-      backgroundColor: ColorData.orange2,
-      visible: true,
-      curve: Curves.bounceIn,
-      spacing: 10.0,
-      spaceBetweenChildren: 10.0,
-      children: [
-        SpeedDialChild(
-          child: const Icon(
-            Icons.person,
-            color: ColorData.white,
-          ),
-          backgroundColor: ColorData.orange2,
-          onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (BuildContext context) {
-            //     return SearchPage();
-            //   }),
-            // );
-          },
-          label: '마이페이지',
-          labelBackgroundColor: ColorData.orange2,
-          labelStyle: const TextStyle(color: ColorData.white),
-        ),
-        SpeedDialChild(
-          child: const Icon(
-            Icons.exit_to_app,
-            color: ColorData.white,
-          ),
-          backgroundColor: ColorData.orange2,
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) {
-                return LoginPage();
-              }),
-            );
-          },
-          label: '로그아웃',
-          labelBackgroundColor: ColorData.orange2,
-          labelStyle: const TextStyle(color: ColorData.white),
-        )
-        // labelStyle: TextStyle(color: ColorData.sky))
-      ],
-    );
-  }
-
   Widget recommendVideoItem({String? url, String? imgUrl}) {
     return InkWell(
       child: Container(
-        // width: 300,
         height: 150,
         decoration: BoxDecoration(
             border: Border.all(color: ColorData.black),
@@ -149,7 +84,6 @@ class RoadMapItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        width: 300,
         height: 150,
         decoration: BoxDecoration(
             border: Border.all(color: ColorData.black),
@@ -157,7 +91,10 @@ class RoadMapItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(roadMapType, style: Theme.of(context).textTheme.headline2),
+            Text(
+              roadMapType,
+              style: Theme.of(context).textTheme.headline2,
+            ),
             Text(
               '$percent%',
               style: Theme.of(context)
