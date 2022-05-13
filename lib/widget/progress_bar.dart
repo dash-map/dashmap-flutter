@@ -5,6 +5,7 @@ Widget progressBar(String percent) {
   return Stack(
     children: [
       Container(
+        width: 300,
         height: 20,
         decoration: BoxDecoration(
             color: ColorData.sky, borderRadius: BorderRadius.circular(15.0)),
