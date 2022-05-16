@@ -1,5 +1,6 @@
 import 'package:dash_map/theme/color.dart';
 import 'package:dash_map/widget/app_bar.dart';
+import 'package:dash_map/widget/progress_bar.dart';
 import 'package:dash_map/widget/speed_dial_button.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class _RoadMapPageState extends State<RoadMapPage> {
         child: Center(
           child: Column(
             children: [
+              const SizedBox(height: 30.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -58,51 +60,97 @@ class _RoadMapPageState extends State<RoadMapPage> {
                   ),
                 ],
               ),
-              Container(
-                width: 280,
-                height: 250,
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorData.black, width: 1),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      '힘내세요~',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText1
-                          ?.copyWith(color: ColorData.grey2),
-                    ),
-                    Text(
-                      'HTTP',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1
-                          ?.copyWith(fontSize: 70, color: ColorData.grey1),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        '완료',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2
-                            ?.copyWith(color: ColorData.white),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: ColorData.yellow,
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              const SizedBox(height: 30.0),
+              RoadMapQuest(isTopic: false, question: '안녕', topic: 'HTTP'),
+              const SizedBox(height: 40.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  progressBar('40'),
+                  const SizedBox(width: 5.0),
+                  Text(
+                    '40%',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        ?.copyWith(color: ColorData.orange2),
+                  )
+                ],
+              ),
             ],
           ),
         ),
       ),
       floatingActionButton: speedDialButton(context),
+    );
+  }
+}
+
+class RoadMapQuest extends StatefulWidget {
+  final bool isTopic;
+  final String question;
+  final String topic;
+
+  const RoadMapQuest({
+    Key? key,
+    required this.isTopic,
+    required this.question,
+    required this.topic,
+  }) : super(key: key);
+
+  @override
+  State<RoadMapQuest> createState() => _RoadMapQuestState();
+}
+
+class _RoadMapQuestState extends State<RoadMapQuest> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 280,
+      height: 250,
+      decoration: BoxDecoration(
+        border: Border.all(color: ColorData.black, width: 1),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Visibility(
+            visible: widget.isTopic,
+            child: Text(
+              'Q. $widget.question',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline1
+                  ?.copyWith(fontSize: 70, color: ColorData.grey1),
+            ),
+          ),
+          Text(
+            widget.topic,
+            style: Theme.of(context)
+                .textTheme
+                .headline1
+                ?.copyWith(fontSize: 70, color: ColorData.grey1),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                !widget.isTopic;
+              });
+            },
+            child: Text(
+              '완료',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  ?.copyWith(color: ColorData.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: ColorData.yellow,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
