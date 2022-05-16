@@ -64,10 +64,14 @@ class HomePage extends StatelessWidget {
       child: Container(
         height: 150,
         decoration: BoxDecoration(
-            border: Border.all(color: ColorData.black),
-            borderRadius: BorderRadius.circular(10.0)),
+          border: Border.all(color: ColorData.black),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        // child: ,
       ),
-      onTap: () {},
+      onTap: () {
+        // ExtendedImage.network();
+      },
     );
   }
 }
@@ -85,9 +89,11 @@ class RoadMapItem extends StatelessWidget {
     return InkWell(
       child: Container(
         height: 150,
+        padding: const EdgeInsets.symmetric(horizontal: 36.0),
         decoration: BoxDecoration(
-            border: Border.all(color: ColorData.black),
-            borderRadius: BorderRadius.circular(10.0)),
+          border: Border.all(color: ColorData.black),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -102,13 +108,13 @@ class RoadMapItem extends StatelessWidget {
                   .bodyText1
                   ?.copyWith(color: ColorData.red),
             ),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: progressBar(percent))
+            progressBar(percent),
           ],
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/roadMap');
+      },
     );
   }
 }

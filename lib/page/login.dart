@@ -1,5 +1,6 @@
 import 'package:dash_map/page/home.dart';
 import 'package:dash_map/theme/color.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 width: 200,
                 height: 200,
-                child: Image.asset(
+                child: ExtendedImage.asset(
                   'assets/login_logo.png',
                   fit: BoxFit.contain,
                 ),

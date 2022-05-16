@@ -9,6 +9,9 @@ PreferredSizeWidget myAppBar() {
       width: 40.0,
       height: 40.0,
     ),
+    iconTheme: const IconThemeData(
+      color: ColorData.orange2,
+    ),
     backgroundColor: ColorData.white,
     centerTitle: true,
     elevation: 3.0,

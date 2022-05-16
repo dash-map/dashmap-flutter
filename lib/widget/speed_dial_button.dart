@@ -1,5 +1,3 @@
-import 'package:dash_map/page/login.dart';
-import 'package:dash_map/page/my.dart';
 import 'package:dash_map/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -24,12 +22,7 @@ Widget speedDialButton(BuildContext context) {
         ),
         backgroundColor: ColorData.orange2,
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (BuildContext context) {
-              return MyPage();
-            }),
-          );
+          Navigator.pushNamed(context, '/my');
         },
         label: '마이페이지',
         labelBackgroundColor: ColorData.orange2,
@@ -42,12 +35,7 @@ Widget speedDialButton(BuildContext context) {
         ),
         backgroundColor: ColorData.orange2,
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (BuildContext context) {
-              return LoginPage();
-            }),
-          );
+          Navigator.pushNamed(context, '/login');
         },
         label: '로그아웃',
         labelBackgroundColor: ColorData.orange2,

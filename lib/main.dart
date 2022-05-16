@@ -1,8 +1,11 @@
 import 'package:dash_map/page/home.dart';
+import 'package:dash_map/page/login.dart';
+import 'package:dash_map/page/my.dart';
+import 'package:dash_map/page/roadmap/roadmap.dart';
 import 'package:dash_map/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(DashMap());
+void main() => runApp(const DashMap());
 
 class DashMap extends StatelessWidget {
   const DashMap({Key? key}) : super(key: key);
@@ -12,7 +15,13 @@ class DashMap extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      home: HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(),
+        '/roadMap': (context) => RoadMapPage(),
+        '/login': (context) => LoginPage(),
+        '/my': (context) => MyPage(),
+      },
     );
   }
 }

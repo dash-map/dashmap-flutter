@@ -2,21 +2,16 @@ import 'package:dash_map/theme/color.dart';
 import 'package:flutter/material.dart';
 
 Widget progressBar(String percent) {
-  return Stack(
-    children: [
-      Container(
-        width: 300,
-        height: 20,
-        decoration: BoxDecoration(
-            color: ColorData.sky, borderRadius: BorderRadius.circular(15.0)),
+  return SizedBox(
+    width: 250,
+    height: 20,
+    child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      child: LinearProgressIndicator(
+        value: double.parse(percent) / 100,
+        backgroundColor: ColorData.sky,
+        valueColor: const AlwaysStoppedAnimation<Color>(ColorData.orange1),
       ),
-      Container(
-        width: 3 * double.parse(percent),
-        height: 20,
-        decoration: BoxDecoration(
-            color: ColorData.orange1,
-            borderRadius: BorderRadius.circular(15.0)),
-      ),
-    ],
+    ),
   );
 }

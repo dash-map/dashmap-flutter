@@ -1,6 +1,7 @@
 import 'package:dash_map/theme/color.dart';
 import 'package:dash_map/widget/app_bar.dart';
 import 'package:dash_map/widget/speed_dial_button.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 class MyPage extends StatelessWidget {
@@ -26,7 +27,8 @@ class MyPage extends StatelessWidget {
                 width: 200,
                 height: 200,
                 child: CircleAvatar(
-                  child: Image.asset(profileImg ?? 'assets/login_logo.png'),
+                  child: ExtendedImage.asset(
+                      profileImg ?? 'assets/login_logo.png'),
                   backgroundColor: Colors.transparent,
                 ),
               ),
@@ -41,7 +43,7 @@ class MyPage extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1
-                    ?.copyWith(color: ColorData.grey),
+                    ?.copyWith(color: ColorData.grey1),
               ),
               const SizedBox(
                 height: 20,

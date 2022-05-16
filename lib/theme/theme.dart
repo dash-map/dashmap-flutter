@@ -10,7 +10,7 @@ ThemeData themeData = () {
           color: Color(0xff000000),
           fontStyle: FontStyle.normal,
           fontSize: 24.0,
-          fontWeight: FontWeight.bold),
+          fontWeight: FontWeight.w600),
       headline2: TextStyle(
           color: Color(0xff000000),
           fontStyle: FontStyle.normal,

@@ -3,7 +3,8 @@ import 'dart:ui';
 class ColorData {
   static const black = Color(0xff000000);
 
-  static const grey = Color(0xff424242);
+  static const grey1 = Color(0xff424242);
+  static const grey2 = Color(0xffB4B4B4);
 
   static const white = Color(0xffFFFFFF);
 
