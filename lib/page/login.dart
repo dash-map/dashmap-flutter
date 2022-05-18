@@ -31,12 +31,12 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (BuildContext context) {
-                      return HomePage();
-                    }),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => HomePage(),
+                      ),
+                      (route) => false);
                 },
                 child: const Text('login with github'),
                 style: ElevatedButton.styleFrom(

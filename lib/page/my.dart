@@ -24,8 +24,8 @@ class MyPage extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               SizedBox(
-                width: 200,
-                height: 200,
+                width: 190,
+                height: 190,
                 child: CircleAvatar(
                   child: ExtendedImage.asset(
                       profileImg ?? 'assets/login_logo.png'),
@@ -74,7 +74,7 @@ class MyPage extends StatelessWidget {
     );
   }
 
-  Widget showCrown(BuildContext context, bool isStudy, String type) {
+  Widget showCrown(BuildContext context, bool isCleared, String type) {
     return Column(children: [
       Text(
         type,
@@ -84,10 +84,10 @@ class MyPage extends StatelessWidget {
             ?.copyWith(color: ColorData.orange2),
       ),
       SizedBox(
-        width: 70,
+        width: 60,
         height: 50,
         child: Image.asset(
-          isStudy ? 'assets/crown_on.png' : 'assets/crown_off.png',
+          isCleared ? 'assets/crown_on.png' : 'assets/crown_off.png',
         ),
       ),
     ]);

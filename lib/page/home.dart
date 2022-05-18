@@ -1,3 +1,4 @@
+import 'package:dash_map/page/roadmap/roadmap.dart';
 import 'package:dash_map/theme/color.dart';
 import 'package:dash_map/widget/app_bar.dart';
 import 'package:dash_map/widget/progress_bar.dart';
@@ -26,15 +27,15 @@ class HomePage extends StatelessWidget {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: const [
-                  RoadMapItem(roadMapType: 'Frontend Roadmap', percent: '10'),
+                  RoadMapItem(roadMapType: 'Frontend Roadmap', progress: '10'),
                   SizedBox(width: 30),
-                  RoadMapItem(roadMapType: 'Backend Roadmap', percent: '70'),
+                  RoadMapItem(roadMapType: 'Backend Roadmap', progress: '70'),
                   SizedBox(width: 30),
-                  RoadMapItem(roadMapType: 'Android Roadmap', percent: '70'),
+                  RoadMapItem(roadMapType: 'Android Roadmap', progress: '70'),
                   SizedBox(width: 30),
-                  RoadMapItem(roadMapType: 'iOS Roadmap', percent: '70'),
+                  RoadMapItem(roadMapType: 'iOS Roadmap', progress: '70'),
                   SizedBox(width: 30),
-                  RoadMapItem(roadMapType: 'AI Roadmap', percent: '70'),
+                  RoadMapItem(roadMapType: 'AI Roadmap', progress: '70'),
                 ],
               ),
             ),
@@ -78,10 +79,10 @@ class HomePage extends StatelessWidget {
 
 class RoadMapItem extends StatelessWidget {
   final String roadMapType;
-  final String percent;
+  final String progress;
 
   const RoadMapItem(
-      {Key? key, required this.percent, required this.roadMapType})
+      {Key? key, required this.progress, required this.roadMapType})
       : super(key: key);
 
   @override
@@ -102,18 +103,28 @@ class RoadMapItem extends StatelessWidget {
               style: Theme.of(context).textTheme.headline2,
             ),
             Text(
-              '$percent%',
+              '$progress%',
               style: Theme.of(context)
                   .textTheme
                   .bodyText1
                   ?.copyWith(color: ColorData.red),
             ),
-            progressBar(percent),
+            SizedBox(
+              width: 200,
+              child: progressBar(progress),
+            ),
           ],
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(context, '/roadMap');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RoadMapPage(
+              progress: progress,
+            ),
+          ),
+        );
       },
     );
   }
